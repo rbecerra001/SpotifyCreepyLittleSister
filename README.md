@@ -3,7 +3,7 @@
 ## General Approach
 ## Planning
 ### ER Diagram
-![](SpotifyCreepyLittleSister_Diagram.png)
+![](SpotifyCreepyLittleSister_Diagram2.png)
 ### User Stories
 #### Songs Model
 - As a user, I should be able to create a song.
