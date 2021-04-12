@@ -23,7 +23,7 @@ public class Artist {
     private String description;
 
     @Column
-    private int monthly_streamers;
+    private int monthlyStreamers;
 
     @ManyToOne
     @JoinColumn(name="label_id")
@@ -41,7 +41,7 @@ public class Artist {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.monthly_streamers = monthly_streamers;
+        this.monthlyStreamers = monthly_streamers;
     }
 
     public Long getId() {
@@ -68,12 +68,12 @@ public class Artist {
         this.description = description;
     }
 
-    public int getMonthly_streamers() {
-        return monthly_streamers;
+    public int getMonthlyStreamers() {
+        return monthlyStreamers;
     }
 
-    public void setMonthly_streamers(int monthly_streamers) {
-        this.monthly_streamers = monthly_streamers;
+    public void setMonthlyStreamers(int monthly_streamers) {
+        this.monthlyStreamers = monthly_streamers;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Artist {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", monthly_streamers=" + monthly_streamers +
+                ", monthly_streamers=" + monthlyStreamers +
                 '}';
     }
 

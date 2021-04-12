@@ -69,10 +69,7 @@ public class GenreService {
 
     public Genre createGenre(Genre genreObject){
         System.out.println("Service calling createGenre ==>");
-        Genre genre = createGenre(genreObject);
-        genre.setName(genre.getName());
-        genre.setDescription(genre.getDescription());
-        return genreRepository.save(genre);
+        return genreRepository.save(genreObject);
     }
 
     public Genre updateGenre(Long genreId, Genre genreObject){

@@ -51,7 +51,7 @@ public class LabelService {
 
     public Artist getLabelArtist(Long labelId, Long artistId){
         System.out.println("Calling getLabelArtist() in service");
-        Optional<Artist> artist = getLabelArtists(labelId).stream().filter(a -> a.getId() == artistId).findFirst();
+        Optional<Artist> artist = getLabelArtists(labelId).stream().filter(a -> a.getId().equals(artistId)).findFirst();
         if(artist.isPresent()){
             return artist.get();
         }else{
@@ -61,26 +61,16 @@ public class LabelService {
 
     public Label createLabel(Label labelObject){
         System.out.println("Calling createLabel() in service");
-        Label label = labelRepository.findByName(labelObject.getName());
-        if (label == null){
-            return labelRepository.save(labelObject);
-        }else{
-            throw new InformationExistException("Label with name " + labelObject.getName() + " already exists");
-        }
+        return labelRepository.save(labelObject);
     }
 
     public Label updateLabel(Long labelId, Label labelObject){
         System.out.println("Calling updateLabel() in service");
-        Label label = labelRepository.findByName(labelObject.getName());
-        if (label == null){
-            label = getLabel(labelId);
-            label.setName(labelObject.getName());
-            label.setNumOfArtists(labelObject.getNumOfArtists());
-            label.setRevenue(labelObject.getRevenue());
-            return labelRepository.save(label);
-        }else{
-            throw new InformationExistException("Label with the name " + labelObject.getName() + " already exists");
-        }
+        Label label = getLabel(labelId);
+        label.setName(labelObject.getName());
+        label.setNumOfArtists(labelObject.getNumOfArtists());
+        label.setRevenue(labelObject.getRevenue());
+        return labelRepository.save(label);
     }
 
     public void deleteLabel(Long labelId){

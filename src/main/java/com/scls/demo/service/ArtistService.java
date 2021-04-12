@@ -6,9 +6,7 @@ import com.scls.demo.model.Artist;
 import com.scls.demo.model.Label;
 import com.scls.demo.model.Song;
 import com.scls.demo.repository.ArtistRepository;
-import com.scls.demo.repository.GenreRepository;
 import com.scls.demo.repository.LabelRepository;
-import com.scls.demo.repository.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +51,7 @@ public class ArtistService {
 
     public Song getArtistSong(Long artistId, Long songId){
         System.out.println("Calling getArtistSong() in service");
-        Optional<Song> song = getArtistSongs(artistId).stream().filter(s -> s.getId() == songId).findFirst();
+        Optional<Song> song = getArtistSongs(artistId).stream().filter(s -> s.getId().equals(songId)).findFirst();
         if (song.isPresent()){
             return song.get();
         }else{
@@ -63,12 +61,7 @@ public class ArtistService {
 
     public Artist createArtist(Artist artistObject){
         System.out.println("Calling createArtist() in service");
-        Artist artist = artistRepository.findByName(artistObject.getName());
-        if (artist == null){
-            return artistRepository.save(artistObject);
-        }else{
-            throw new InformationExistException("Artist with name " + artist.getName() + " already  exists");
-        }
+        return artistRepository.save(artistObject);
     }
 
     public Artist createLabelArtist(Long labelId, Artist artistObject){
@@ -86,14 +79,10 @@ public class ArtistService {
     public Artist updateArtist(Long artistId, Artist artistObject){
         System.out.println("Calling updateArtist() in service");
         Artist artist = getArtist(artistId);
-        if (artistRepository.findByName(artistObject.getName()) != null){
-            throw new InformationExistException("Artist with name " + artistObject.getName() + " already exists");
-        }else{
-            artist.setName(artistObject.getName());
-            artist.setDescription(artistObject.getDescription());
-            artist.setMonthly_streamers(artistObject.getMonthly_streamers());
-            return artistRepository.save(artist);
-        }
+        artist.setName(artistObject.getName());
+        artist.setDescription(artistObject.getDescription());
+        artist.setMonthlyStreamers(artistObject.getMonthlyStreamers());
+        return artistRepository.save(artist);
     }
 
     public void deleteArtist(Long artistId){

@@ -20,7 +20,7 @@ public class Song {
     private Float length;
 
     @Column
-    private String release_date;
+    private String releaseDate;
 
     @ManyToOne
     @JoinColumn(name="artist_id")
@@ -39,7 +39,7 @@ public class Song {
         this.id = id;
         this.name = name;
         this.length = length;
-        this.release_date = release_date;
+        this.releaseDate = release_date;
     }
 
     public Long getId() {
@@ -66,12 +66,12 @@ public class Song {
         this.length = length;
     }
 
-    public String getRelease_date() {
-        return release_date;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(String release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(String release_date) {
+        this.releaseDate = release_date;
     }
 
     public void setGenre(Genre genre){this.genre = genre;}
@@ -84,7 +84,7 @@ public class Song {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", length=" + length +
-                ", release_date='" + release_date + '\'' +
+                ", release_date='" + releaseDate + '\'' +
                 '}';
     }
 

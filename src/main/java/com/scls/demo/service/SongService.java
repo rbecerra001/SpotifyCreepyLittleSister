@@ -41,11 +41,11 @@ public class SongService {
 
     public Song getSong(Long songId){
         System.out.println("Service calling getSong ==>");
-        Song song = songRepository.findById(songId).get();
-        if(song == null){
+        Optional<Song> song = songRepository.findById(songId);
+        if(song.isEmpty()){
             throw new InformationNotFoundException("Song with id: " + songId + "does not exist.");
         } else {
-            return song;
+            return song.get();
         }
     }
 
@@ -73,7 +73,7 @@ public class SongService {
             Song updateSong = songRepository.findById(songId).get();
             updateSong.setName(songObject.getName());
             updateSong.setLength(songObject.getLength());
-            updateSong.setRelease_date(songObject.getRelease_date());
+            updateSong.setReleaseDate(songObject.getReleaseDate());
             return songRepository.save(updateSong);
         } else {
             throw new InformationNotFoundException("Song with id " + songId + " does not exist");
