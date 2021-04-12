@@ -10,11 +10,11 @@ import java.util.Optional;
 @RestController
 public class SongController {
 
-    private SongService songService;
+    private SongService SongService;
 
     @Autowired
     public void setSongService(SongService songService){
-        this.songService = songService;
+        this.SongService = songService;
     }
 
     //http://localhost:9092/helloworld
@@ -27,14 +27,14 @@ public class SongController {
     @GetMapping(path = "/songs")
     public List<Song> getSongs(){
         System.out.println("Calling getSongs ==>");
-        return songService.getSongs();
+        return SongService.getSongs();
     }
 
     //http://localhost:9092/songs/{songId}
     @GetMapping(path = "/songs/{songId}")
     public Song getSong(@PathVariable Long songId){
         System.out.println("Calling getSong ==>");
-        return songService.getSong(songId);
+        return SongService.getSong(songId);
     }
 
     //http://localhost:9092/artists/{artistId}/genres/{genreId}/songs

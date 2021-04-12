@@ -11,11 +11,11 @@ import java.util.Optional;
 
 @RestController
 public class GenreController {
-    private GenreService genreService;
+    private GenreService GenreService;
 
     @Autowired
     public void setGenreService(GenreService genreService){
-        this.genreService = genreService;
+        this.GenreService = genreService;
     }
 
     //http://localhost:9092/genres
@@ -33,7 +33,7 @@ public class GenreController {
     }
     //http://localhost:9092/genres/{genreId}/songs
     @GetMapping (path="/genre/{genreId}/songs")
-    public Song getSongsinGenre(@PathVariable Long genreId){
+    public List<Song> getSongsinGenre(@PathVariable Long genreId){
         System.out.println("calling getSongsinGenre ==>");
         return GenreService.getSongsinGenre(genreId);
     }
@@ -56,7 +56,7 @@ public class GenreController {
     @PutMapping(path="/genres/{genreId}")
     public Genre updateGenre(@PathVariable Long genreId, @RequestBody Genre genreObject){
         System.out.println("Calling updateGenre ==>");
-        return GenreService.updateGenre(genreId genreObject);
+        return GenreService.updateGenre(genreId, genreObject);
     }
 
     //http://localhost:9092/genres/{genreId}

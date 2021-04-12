@@ -55,10 +55,9 @@ public class SongService {
         if(artist.isPresent()){
             Optional<Genre> genre = genreRepository.findById(genreId);
             if(genre.isPresent()){
-                Song song = createSong(songObject);
-                song.setArtist(artist.get());
-                song.setGenre(genre.get());
-                return songRepository.save(song);
+                songObject.setArtist(artist.get());
+                songObject.setGenre(genre.get());
+                return songRepository.save(songObject);
             } else {
                 throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
             }

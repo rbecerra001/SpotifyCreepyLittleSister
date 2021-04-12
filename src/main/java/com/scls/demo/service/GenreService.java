@@ -34,15 +34,15 @@ public class GenreService {
 
     public Genre getGenre(Long genreId){
         System.out.println("Service calling getGenre ==>");
-        Genre genre = genreRepository.findById(genreId);
-        if(genre == null){
+        Optional<Genre> genre = genreRepository.findById(genreId);
+        if(genre.isPresent()){
             throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
         } else {
-            return genre;
+            return genre.get();
         }
     }
 
-    public Song getSongsinGenre(Long genreId){
+    public List<Song> getSongsinGenre(Long genreId){
         System.out.println("Service calling getSongsinGenre ==>");
         Optional<Genre> genre = genreRepository.findById(genreId);
         if(genre.isPresent()){
@@ -58,7 +58,7 @@ public class GenreService {
         if(genre.isPresent()){
             Optional<Song> song = songRepository.findById(songId);
             if(song.isPresent()){
-                return song;
+                return song.get();
             } else {
                 throw new InformationNotFoundException("Song with id: " + songId + "does not exist.");
             }

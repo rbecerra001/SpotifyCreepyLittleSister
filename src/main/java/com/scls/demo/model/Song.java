@@ -74,6 +74,10 @@ public class Song {
         this.release_date = release_date;
     }
 
+    public void setGenre(Genre genre){this.genre = genre;}
+
+    public Genre getGenre(){return genre;}
+
     @Override
     public String toString() {
         return "song{" +
