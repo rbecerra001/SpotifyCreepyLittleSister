@@ -2,16 +2,16 @@ package com.scls.demo.service;
 
 import com.scls.demo.exception.InformationNotFoundException;
 import com.scls.demo.model.Artist;
+import com.scls.demo.model.Genre;
 import com.scls.demo.model.Song;
 import com.scls.demo.repository.ArtistRepository;
 import com.scls.demo.repository.GenreRepository;
-import com.scls.demo.repository.LabelRepository;
 import com.scls.demo.repository.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SongService {
@@ -39,7 +39,7 @@ public class SongService {
         return songRepository.findAll();
     }
 
-    public Song getSong(@PathVariable Long songId){
+    public Song getSong(Long songId){
         System.out.println("Service calling getSong ==>");
         Song song = songRepository.findById(songId);
         if(song == null){
@@ -49,5 +49,46 @@ public class SongService {
         }
     }
 
+    public Song createSong(Long artistId, Long genreId, Song songObject){
+        System.out.println("Service calling createSong ==>");
+        Optional<Artist> artist = artistRepository.findById(artistId);
+        if(artist.isPresent()){
+            Optional<Genre> genre = genreRepository.findById(genreId);
+            if(genre.isPresent()){
+                Song song = createSong(songObject);
+                song.setArtist(artist.get());
+                song.setGenre(genre.get());
+                return songRepository.save(song);
+            } else {
+                throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
+            }
+        } else {
+            throw new InformationNotFoundException("Artist with id " + artistId + " does not exist");
+        }
+    }
 
+    public Song updateSong(Long songId, Song songObject){
+        System.out.println("Service calling updateSong ==>");
+        Optional<Song> song = songRepository.findById(songId);
+        if(song.isPresent()){
+            Song updateSong = songRepository.findById(songId).get();
+            updateSong.setName(songObject.getName());
+            updateSong.setLength(songObject.getLength());
+            updateSong.setRelease_date(songObject.getRelease_date());
+            return songRepository.save(updateSong);
+        } else {
+            throw new InformationNotFoundException("Song with id " + songId + " does not exist");
+        }
+    }
+
+    public Optional<Song> deleteSong(Long songId){
+        System.out.println("Service calling deleteSong ==>");
+        Optional<Song> song = songRepository.findById(songId);
+        if(song.isPresent()){
+            songRepository.deleteById(songId);
+            return song;
+        } else {
+            throw new InformationNotFoundException("Song with id " + songId + " does not exist");
+        }
+    }
 }

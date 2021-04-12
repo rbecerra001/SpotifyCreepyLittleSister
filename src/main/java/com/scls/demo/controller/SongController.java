@@ -3,11 +3,9 @@ package com.scls.demo.controller;
 import com.scls.demo.model.Song;
 import com.scls.demo.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class SongController {
@@ -39,9 +37,24 @@ public class SongController {
         return SongService.getSong(songId);
     }
 
-//    get all songs
-//    get single song
-//    create single song with artist and genre
-//    update single song
-//    delete single song
+    //http://localhost:9092/artists/{artistId}/genres/{genreId}/songs
+    @PostMapping(path="/artists/{artistId}/genres/{genreId}/songs")
+    public Song createSong(@PathVariable Long artistId, @PathVariable Long genreId, @RequestBody Song songObject){
+        System.out.println("Calling createSong ==>");
+        return SongService.createSong(artistId, genreId, songObject);
+    }
+
+    //http://localhost:9092/songs/{songId}
+    @PutMapping(path="/songs/{songId}")
+    public Song updateSong(@PathVariable Long songId, @RequestBody Song songObject){
+        System.out.println("Calling updateSong ==>");
+        return SongService.updateSong(songId, songObject);
+    }
+
+    //http://localhost:9092/songs/{songId}
+    @DeleteMapping(path="/songs/{songId}")
+    public Optional<Song> deleteSong(@PathVariable Long songId){
+        System.out.println("Calling deleteSong ==>");
+        return SongService.deleteSong(songId);
+    }
 }
