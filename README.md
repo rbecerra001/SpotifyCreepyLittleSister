@@ -13,60 +13,32 @@
 ### Endpoints
 | Request Type | URL| Request Body | Action |
 |--|--|--|--|
-| GET | /songs | None | get all the songs
-|--|--|--|--|
-| GET | /songs/{songId} | None | get a single song
-|--|--|--|--|
-| POST | /artists/{artistId}/genres/{genreId}/songs | song info | creates a single song with an artist in a genre
-|--|--|--|--|
-| PUT | /songs/{songId} | song info | updates a single song
-|--|--|--|--|
-| DELETE | /songs/{songId} | None | delete a single song
-|--|--|--|--|
-
-| GET | /artists | None | get all artists
-|--|--|--|--|
-| GET | /artists/{artistId} | None | get a single artist
-|--|--|--|--|
-| GET | /artists/{artistId}/songs | None | gets all songs by an artist
-|--|--|--|--|
-| GET | /artists/{artistId}/songs/{songId} | None | gets a single song by an artist**
-|--|--|--|--|
-| POST | /artists | artist info | creates a single artist
-|--|--|--|--|
-| POST | /labels/{labelId}/artists | artist info | creates a single artist with a label**
-|--|--|--|--|
-| PUT | /artists/{artistId} | artist info | updates a single artist
-|--|--|--|--|
-| DELETE | /artists/{artistId} | None | deletes a single artist
-|--|--|--|--|
-
-| GET | /labels | None | Get all labels
-|--|--|--|--|
-| GET | /labels/{labelId} | None | Gets a single label
-|--|--|--|--|
-| GET | /labels/{labelId}/artists | None | Gets all artists in a label
-|--|--|--|--|
-| GET | /labels/{labelId}/artists/{artistId} | None | Gets a single artist in a label**
-|--|--|--|--|
-| POST | /labels | Label info | Creates a new label
-|--|--|--|--|
-| PUT | /labels/{labelId} | Label info | Updates a label
-|--|--|--|--|
-| DELETE | /label/{labelId} | None | Deletes a label
-|--|--|--|--|
-
-| GET | /genres | None | gets all genres
-|--|--|--|--|
-| GET | /genres/{genreId} | None | gets a single genre
-|--|--|--|--|
-| GET | /genres/{genreId}/songs | None | gets all songs in a genre
-|--|--|--|--|
-| POST | /genres | genre info | creates a single genre
-|--|--|--|--|
-| PUT | /genres|{genreId} | genre info | updates a single genre
-|--|--|--|--|
-| DELETE | /genres|{genreId} | None | deletes a single genre
+| GET | /songs | None | get all the songs |
+| GET | /songs/{songId} | None | get a single song |
+| POST | /artists/{artistId}/genres/{genreId}/songs | song info | creates a single song with an artist in a genre |
+| PUT | /songs/{songId} | song info | updates a single song |
+| DELETE | /songs/{songId} | None | delete a single song |
+| GET | /artists | None | get all artists |
+| GET | /artists/{artistId} | None | get a single artist |
+| GET | /artists/{artistId}/songs | None | gets all songs by an artist |
+| GET | /artists/{artistId}/songs/{songId} | None | gets a single song by an artist** |
+| POST | /artists | artist info | creates a single artist |
+| POST | /labels/{labelId}/artists | artist info | creates a single artist with a label** |
+| PUT | /artists/{artistId} | artist info | updates a single artist |
+| DELETE | /artists/{artistId} | None | deletes a single artist |
+| GET | /labels | None | Get all labels |
+| GET | /labels/{labelId} | None | Gets a single label |
+| GET | /labels/{labelId}/artists | None | Gets all artists in a label |
+| GET | /labels/{labelId}/artists/{artistId} | None | Gets a single artist in a label** |
+| POST | /labels | Label info | Creates a new label |
+| PUT | /labels/{labelId} | Label info | Updates a label |
+| DELETE | /label/{labelId} | None | Deletes a label |
+| GET | /genres | None | gets all genres |
+| GET | /genres/{genreId} | None | gets a single genre |
+| GET | /genres/{genreId}/songs | None | gets all songs in a genre |
+| POST | /genres | genre info | creates a single genre |
+| PUT | /genres|{genreId} | genre info | updates a single genre |
+| DELETE | /genres|{genreId} | None | deletes a single genre |
 
 ## Planning
 
