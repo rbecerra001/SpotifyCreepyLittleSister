@@ -1,5 +1,6 @@
 package com.scls.demo.service;
 
+import com.scls.demo.exception.InformationNotFoundException;
 import com.scls.demo.model.Artist;
 import com.scls.demo.model.Song;
 import com.scls.demo.repository.ArtistRepository;
@@ -8,6 +9,7 @@ import com.scls.demo.repository.LabelRepository;
 import com.scls.demo.repository.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -34,12 +36,18 @@ public class SongService {
 
     public List<Song> getSongs(){
         System.out.println("Service calling getSongs ==>");
-        List<Song> songs = songRepository.findByUserId
-        if(songs.isEmpty()){
-            throw new Informationnotfoundexception("no categories found for that user id" + userDetails.getUser().getId());
-        } else{
-            return categories;
+        return songRepository.findAll();
+    }
+
+    public Song getSong(@PathVariable Long songId){
+        System.out.println("Service calling getSong ==>");
+        Song song = songRepository.findById(songId);
+        if(song == null){
+            throw new InformationNotFoundException("Song with id: " + songId + "does not exist.");
+        } else {
+            return song;
         }
     }
+
 
 }

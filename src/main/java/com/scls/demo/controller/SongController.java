@@ -4,6 +4,7 @@ import com.scls.demo.model.Song;
 import com.scls.demo.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -30,6 +31,14 @@ public class SongController {
         System.out.println("Calling getSongs ==>");
         return SongService.getSongs();
     }
+
+    //http://localhost:9092/songs/{songId}
+    @GetMapping(path = "/songs/{songId}")
+    public Song getSong(@PathVariable Long songId){
+        System.out.println("Calling getSong ==>");
+        return SongService.getSong(songId);
+    }
+
 //    get all songs
 //    get single song
 //    create single song with artist and genre
