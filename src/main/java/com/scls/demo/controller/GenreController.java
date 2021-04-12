@@ -19,7 +19,7 @@ public class GenreController {
     }
 
     //http://localhost:9092/genres
-    @GetMapping(path="/genre")
+    @GetMapping(path="/genres")
     public List<Genre> getGenres(){
         System.out.println("calling getGenres ==>");
         return GenreService.getGenres();
