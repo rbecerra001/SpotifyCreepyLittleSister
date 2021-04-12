@@ -1,8 +1,7 @@
 package com.scls.demo.controller;
 
-import com.scls.demo.model.Label;
+import com.scls.demo.model.Song;
 import com.scls.demo.service.SongService;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +19,20 @@ public class SongController {
     }
 
     //http://localhost:9092/helloworld
-    @GetMapping("/helloworld")
+    @GetMapping(path = "/helloworld")
     public String helloWorld(){
         return "Hello World";
     }
 
-//    @GetMapping(path="/label")
-//    public List<Label> getLabel(){
-//    }
+    //http://localhost:9092/songs
+    @GetMapping(path = "/songs")
+    public List<Song> getSongs(){
+        System.out.println("Calling getSongs ==>");
+        return SongService.getSongs();
+    }
+//    get all songs
+//    get single song
+//    create single song with artist and genre
+//    update single song
+//    delete single song
 }
