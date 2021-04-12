@@ -32,9 +32,11 @@ public class ArtistService {
     }
 
     public List<Artist> getArtists(){
+        System.out.println("Calling getArtists() in service");
         return artistRepository.findAll();
     }
     public Artist getArtist(Long artistId){
+        System.out.println("Calling getArtist() in service");
         Optional<Artist> artist = artistRepository.findById(artistId);
         if(artist.isPresent()){
             return artist.get();
@@ -44,11 +46,13 @@ public class ArtistService {
     }
 
     public List<Song> getArtistSongs(Long artistId){
+        System.out.println("Calling getArtistSongs() in service");
         Artist artist = getArtist(artistId);
         return artist.getSongList();
     }
 
     public Song getArtistSong(Long artistId, Long songId){
+        System.out.println("Calling getArtistSong() in service");
         Optional<Song> song = getArtistSongs(artistId).stream().filter(s -> s.getId() == songId).findFirst();
         if (song.isPresent()){
             return song.get();
@@ -58,6 +62,7 @@ public class ArtistService {
     }
 
     public Artist createArtist(Artist artistObject){
+        System.out.println("Calling createArtist() in service");
         Artist artist = artistRepository.findByName(artistObject.getName());
         if (artist == null){
             return artistRepository.save(artistObject);
@@ -67,19 +72,21 @@ public class ArtistService {
     }
 
     public Artist createLabelArtist(Long labelId, Artist artistObject){
+        System.out.println("Calling createLabelArtist() in service");
         Optional<Label> label = labelRepository.findById(labelId);
         if (label.isPresent()){
             Artist artist = createArtist(artistObject);
             artist.setLabel(label.get());
             return artistRepository.save(artist);
         }else{
-            throw new InformationNotFoundException("Label with id " + labelId + " does not exist")
+            throw new InformationNotFoundException("Label with id " + labelId + " does not exist");
         }
     }
 
     public Artist updateArtist(Long artistId, Artist artistObject){
+        System.out.println("Calling updateArtist() in service");
         Artist artist = getArtist(artistId);
-        if (artistRepository.findByName(artistObject.getName()) == null){
+        if (artistRepository.findByName(artistObject.getName()) != null){
             throw new InformationExistException("Artist with name " + artistObject.getName() + " already exists");
         }else{
             artist.setName(artistObject.getName());
@@ -90,6 +97,7 @@ public class ArtistService {
     }
 
     public void deleteArtist(Long artistId){
+        System.out.println("Calling deleteArtist() in service");
         if(artistRepository.findById(artistId).isPresent()){
             artistRepository.deleteById(artistId);
         }else{
