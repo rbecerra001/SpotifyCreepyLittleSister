@@ -1,6 +1,5 @@
 package com.scls.demo.service;
 
-import com.scls.demo.model.Artist;
 import com.scls.demo.repository.ArtistRepository;
 import com.scls.demo.repository.GenreRepository;
 import com.scls.demo.repository.LabelRepository;
@@ -9,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SongService {
+public class GenreService {
+
     private SongRepository songRepository;
-    private ArtistRepository artistRepository;
     private GenreRepository genreRepository;
 
     @Autowired
@@ -20,13 +19,7 @@ public class SongService {
     }
 
     @Autowired
-    public void setArtistRepository(ArtistRepository artistRepository){
-        this.artistRepository = artistRepository;
-    }
-
-    @Autowired
     public void setGenreRepository(GenreRepository genreRepository){
         this.genreRepository = genreRepository;
     }
-
 }
