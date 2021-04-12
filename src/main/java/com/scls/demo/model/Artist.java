@@ -85,4 +85,20 @@ public class Artist {
                 ", monthly_streamers=" + monthly_streamers +
                 '}';
     }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    public List<Song> getSongList() {
+        return songList;
+    }
+
+    public void setSongList(List<Song> songList) {
+        this.songList = songList;
+    }
 }
