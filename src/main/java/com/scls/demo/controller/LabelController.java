@@ -12,4 +12,6 @@ public class LabelController {
     public void setLabelService(LabelService labelService){
         this.labelService = labelService;
     }
+
+    
 }

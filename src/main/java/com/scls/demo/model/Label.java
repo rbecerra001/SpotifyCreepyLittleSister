@@ -19,7 +19,7 @@ public class Label {
     private String name;
 
     @Column
-    private int num_of_artists;
+    private int numOfArtists;
 
     @Column
     private int revenue;
@@ -31,10 +31,10 @@ public class Label {
     public Label() {
     }
 
-    public Label(Long id, String name, int num_of_artists, int revenue) {
+    public Label(Long id, String name, int numOfArtists, int revenue) {
         this.id = id;
         this.name = name;
-        this.num_of_artists = num_of_artists;
+        this.numOfArtists = numOfArtists;
         this.revenue = revenue;
     }
 
@@ -54,12 +54,12 @@ public class Label {
         this.name = name;
     }
 
-    public int getNum_of_artists() {
-        return num_of_artists;
+    public int getNumOfArtists() {
+        return numOfArtists;
     }
 
-    public void setNum_of_artists(int num_of_artists) {
-        this.num_of_artists = num_of_artists;
+    public void setNumOfArtists(int num_of_artists) {
+        this.numOfArtists = num_of_artists;
     }
 
     public int getRevenue() {
@@ -75,7 +75,7 @@ public class Label {
         return "label{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", num_of_artists=" + num_of_artists +
+                ", num_of_artists=" + numOfArtists +
                 ", revenue=" + revenue +
                 '}';
     }
