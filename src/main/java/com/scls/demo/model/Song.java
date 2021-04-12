@@ -83,4 +83,12 @@ public class Song {
                 ", release_date='" + release_date + '\'' +
                 '}';
     }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
 }
