@@ -41,7 +41,7 @@ public class SongService {
 
     public Song getSong(Long songId){
         System.out.println("Service calling getSong ==>");
-        Song song = songRepository.findById(songId);
+        Song song = songRepository.findById(songId).get();
         if(song == null){
             throw new InformationNotFoundException("Song with id: " + songId + "does not exist.");
         } else {

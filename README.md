@@ -84,9 +84,9 @@ user will be notified by error statement.
 
 ### Timeline
 
-| Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | | -- | -- | -- | -- | -- | | Set up Spring Boot and start creating models |
-Finish models and start CRUD operations | Finish CRUD operations and do exception handling | Bonus material | General
-clean up and presentation |
+| Day 1 | Day 2 | Day 3 | Day 4 | Day 5 | 
+| -- | -- | -- | -- | -- | 
+| Set up Spring Boot and start creating models | Finish models and start CRUD operations | Finish CRUD operations and do exception handling | Bonus material | General clean up and presentation |
 
 ## Technology Used
 

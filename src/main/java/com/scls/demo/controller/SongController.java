@@ -27,14 +27,14 @@ public class SongController {
     @GetMapping(path = "/songs")
     public List<Song> getSongs(){
         System.out.println("Calling getSongs ==>");
-        return SongService.getSongs();
+        return songService.getSongs();
     }
 
     //http://localhost:9092/songs/{songId}
     @GetMapping(path = "/songs/{songId}")
     public Song getSong(@PathVariable Long songId){
         System.out.println("Calling getSong ==>");
-        return SongService.getSong(songId);
+        return songService.getSong(songId);
     }
 
     //http://localhost:9092/artists/{artistId}/genres/{genreId}/songs
