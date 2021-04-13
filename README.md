@@ -99,7 +99,7 @@ user will be notified by error statement.
 ## Installation Instructions
 1. Fork and clone the repository.
 2. Using postgres, create a database called `spotifycreepylittlesister`
-3. Open the file `SpotifyCreepyLittleSister/src/main/resources/application-dev.properties` and change lines 4 and 5 to be
+3. Open the file `SpotifyCreepyLittleSister/src/main/resources/application-dev.properties` and change lines 7 and 9 to be
    your postgres username and password
 4. Go into the  `SpotifyCreepyLittleSister` directory and run the application from your command line using `mvn spring-boot:run`
 5. Open the url `localhost:9092/helloworld`.  If the screen says `Hello World`, you're connected and should be able to register and login a user. 

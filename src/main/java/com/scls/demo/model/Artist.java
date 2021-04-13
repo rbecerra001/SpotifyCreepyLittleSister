@@ -7,6 +7,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.List;
 
+/*
+ * Artist Model creates a table named artists in the database
+ * It has the columns: id, name, description, monthly_streamers, label_id
+ */
 @Entity
 @Table (name="artists")
 public class Artist {
