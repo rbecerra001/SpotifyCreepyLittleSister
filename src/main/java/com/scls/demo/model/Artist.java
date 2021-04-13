@@ -34,6 +34,11 @@ public class Artist {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Song> songList;
 
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Artist() {
     }
 
@@ -100,5 +105,13 @@ public class Artist {
 
     public void setSongList(List<Song> songList) {
         this.songList = songList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
