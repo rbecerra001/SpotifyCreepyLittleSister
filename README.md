@@ -10,8 +10,8 @@
 5. Figured out what endpoints we wanted to implement
 6. Created Controllers, Services, and Repositories
 7. Made the decision that items in the models can have the same name
-9. Added JWTs allowing a user to register and log in
-10. Went through and added comments where they were missing (maybe we should have done this along the way 😉)
+8. Added JWTs allowing a user to register and log in
+9. Went through and added comments where they were missing (maybe we should have done this along the way 😉)
 
 
 ### Endpoints
