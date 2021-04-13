@@ -120,9 +120,9 @@ public class ArtistController {
     /*
      * http://localhost:9092/artists/{artistId}
      *
-     * Deletes a single artist
+     * Deletes a single artist and all the labels connected to it
      * params: Long artistId - the id of the artist to be deleted
-     * returns: ResponseEntity<HashMap> - a message letting the user know the artist was successfully  deleted
+     * returns: ResponseEntity<HashMap> - a message letting the user know the artist was successfully deleted
      */
     @DeleteMapping(path = "/artists/{artistId}")
     public ResponseEntity<HashMap> deleteArtist(@PathVariable Long artistId){
