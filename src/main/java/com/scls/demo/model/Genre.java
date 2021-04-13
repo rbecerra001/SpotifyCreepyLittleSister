@@ -11,8 +11,6 @@ import java.util.List;
 @Table(name="genres")
 public class Genre {
 
-    // the following are private variables which are the columns for the genre model
-
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY) // this will generate a unique id for each of the artists created

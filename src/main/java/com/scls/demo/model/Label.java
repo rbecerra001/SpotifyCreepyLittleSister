@@ -11,9 +11,11 @@ import java.util.List;
 @Table(name="labels")
 public class Label {
 
+    // the following are private variables which are the columns for the label model
+
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // this will generate a unique id for each of the artists created
     private Long id;
 
     @Column
@@ -37,12 +39,15 @@ public class Label {
     public Label() {
     }
 
+    // the constructors for the label class
     public Label(Long id, String name, int numOfArtists, int revenue) {
         this.id = id;
         this.name = name;
         this.numOfArtists = numOfArtists;
         this.revenue = revenue;
     }
+
+    // the following are the getters and setters for the variables in the label class
 
     public Long getId() {
         return id;
