@@ -7,6 +7,10 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.List;
 
+/*
+ * Label Model creates a table named labels in the database
+ * It has the columns: id, name, num_of_artists, revenue, user_id
+ */
 @Entity
 @Table(name="labels")
 public class Label {

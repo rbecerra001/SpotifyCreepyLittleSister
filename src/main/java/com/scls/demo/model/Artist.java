@@ -9,7 +9,7 @@ import java.util.List;
 
 /*
  * Artist Model creates a table named artists in the database
- * It has the columns: id, name, description, monthly_streamers, label_id
+ * It has the columns: id, name, description, monthly_streamers, label_id, user_id
  */
 @Entity
 @Table (name="artists")
