@@ -40,8 +40,8 @@
 | GET | /genres/{genreId} | None | gets a single genre | Private |
 | GET | /genres/{genreId}/songs | None | gets all songs in a genre | Private |
 | POST | /genres | genre info | creates a single genre | Private |
-| PUT | /genres|{genreId} | genre info | updates a single genre | Private |
-| DELETE | /genres|{genreId} | None | deletes a single genre | Private |
+| PUT | /genres/{genreId} | genre info | updates a single genre | Private |
+| DELETE | /genres/{genreId} | None | deletes a single genre | Private |
 | POST | /auth/users/register | user info | registers a user | Public |
 | POST | /auth/users/login  | user info | logs a user in | Public |
 
@@ -102,3 +102,4 @@ user will be notified by error statement.
    your postgres username and password
 4. Go into the  `SpotifyCreepyLittleSister` directory and run the application from your command line using `mvn spring-boot:run`
 5. Open the url `localhost:9092/helloworld`.  If the screen says Hello World, you're good to go. 
+6. Register a user through postgres and then log in 
