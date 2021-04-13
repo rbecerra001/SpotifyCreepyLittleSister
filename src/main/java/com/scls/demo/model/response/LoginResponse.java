@@ -1,5 +1,6 @@
 package com.scls.demo.model.response;
 
+// this class send back the JWT token if the user name and password is correct
 public class LoginResponse {
     private String JWT;
 

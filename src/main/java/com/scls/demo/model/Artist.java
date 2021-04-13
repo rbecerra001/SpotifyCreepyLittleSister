@@ -14,10 +14,10 @@ import java.util.List;
 @Entity
 @Table (name="artists")
 public class Artist {
-
+    // the following are private variables which are the columns for the artist model
     @Id // Primary Key
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // this will generate a unique id for each of the artists created
     private Long id;
 
     @Column
@@ -29,6 +29,7 @@ public class Artist {
     @Column
     private int monthlyStreamers;
 
+    // will establish a Many to One relationship for with the label model
     @ManyToOne // One artist can have one Label
     @JoinColumn(name="label_id")
     @JsonIgnore
@@ -43,6 +44,7 @@ public class Artist {
     @JoinColumn(name = "user_id")
     private User user;
 
+    // the constructors for the artist class
     public Artist() {
     }
 
@@ -53,6 +55,7 @@ public class Artist {
         this.monthlyStreamers = monthly_streamers;
     }
 
+    // the following are the getters and setters for the variables in the artists class
     public Long getId() {
         return id;
     }
