@@ -10,11 +10,11 @@ import java.util.Optional;
 @RestController
 public class SongController {
 
-    private SongService SongService;
+    private SongService songService;
 
     @Autowired
     public void setSongService(SongService songService){
-        this.SongService = songService;
+        this.songService = songService;
     }
 
     //http://localhost:9092/helloworld
@@ -28,7 +28,7 @@ public class SongController {
     @GetMapping(path = "/songs")
     public List<Song> getSongs(){
         System.out.println("Calling getSongs ==>");
-        return SongService.getSongs();
+        return songService.getSongs();
     }
     // his endpoint will call the service class to get all songs in the model
 
@@ -36,7 +36,7 @@ public class SongController {
     @GetMapping(path = "/songs/{songId}")
     public Song getSong(@PathVariable Long songId){
         System.out.println("Calling getSong ==>");
-        return SongService.getSong(songId);
+        return songService.getSong(songId);
     }
     // his endpoint will call the service class to get a single song using the song ID
 
@@ -44,7 +44,7 @@ public class SongController {
     @PostMapping(path="/artists/{artistId}/genres/{genreId}/songs")
     public Song createSong(@PathVariable Long artistId, @PathVariable Long genreId, @RequestBody Song songObject){
         System.out.println("Calling createSong ==>");
-        return SongService.createSong(artistId, genreId, songObject);
+        return songService.createSong(artistId, genreId, songObject);
     }
     // his endpoint will call the service class to create a song that requires an artist to exist as well as a genre
     // in order to use the artist ID and genre ID
@@ -53,7 +53,7 @@ public class SongController {
     @PutMapping(path="/songs/{songId}")
     public Song updateSong(@PathVariable Long songId, @RequestBody Song songObject){
         System.out.println("Calling updateSong ==>");
-        return SongService.updateSong(songId, songObject);
+        return songService.updateSong(songId, songObject);
     }
     // his endpoint will call the service class to update a song using the song ID
 
@@ -61,7 +61,7 @@ public class SongController {
     @DeleteMapping(path="/songs/{songId}")
     public Optional<Song> deleteSong(@PathVariable Long songId){
         System.out.println("Calling deleteSong ==>");
-        return SongService.deleteSong(songId);
+        return songService.deleteSong(songId);
     }
     // his endpoint will call the service class to delete a song using the song ID
 }
