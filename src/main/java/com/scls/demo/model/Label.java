@@ -48,7 +48,6 @@ public class Label {
     }
 
     // the following are the getters and setters for the variables in the label class
-
     public Long getId() {
         return id;
     }

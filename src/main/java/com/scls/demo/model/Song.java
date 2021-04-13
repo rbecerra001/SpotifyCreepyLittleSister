@@ -8,9 +8,11 @@ import javax.persistence.*;
 @Table (name="songs")
 public class Song {
 
+    // the following are private variables which are the columns for the songs model
+
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // this will generate a unique id for each of the artists created
     private Long id;
 
     @Column
@@ -40,6 +42,7 @@ public class Song {
     public Song() {
     }
 
+    // the constructors for the song class
     public Song(Long id, String name, Float length, String release_date) {
         this.id = id;
         this.name = name;
@@ -47,6 +50,7 @@ public class Song {
         this.releaseDate = release_date;
     }
 
+    // the following are the getters and setters for the variables in the songs class
     public Long getId() {
         return id;
     }
