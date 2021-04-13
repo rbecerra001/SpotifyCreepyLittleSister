@@ -15,7 +15,7 @@ import java.util.List;
 @Table (name="artists")
 public class Artist {
 
-    @Id
+    @Id // Primary Key
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,16 +29,16 @@ public class Artist {
     @Column
     private int monthlyStreamers;
 
-    @ManyToOne
+    @ManyToOne // One artist can have one Label
     @JoinColumn(name="label_id")
     @JsonIgnore
     private Label label;
 
-    @OneToMany(mappedBy = "artist", orphanRemoval = true)
+    @OneToMany(mappedBy = "artist", orphanRemoval = true)  // One Artist can have many songs
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Song> songList;
 
-    @ManyToOne
+    @ManyToOne // One Artist can have one user
     @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;

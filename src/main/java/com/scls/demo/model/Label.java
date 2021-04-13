@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name="labels")
 public class Label {
 
-    @Id
+    @Id // Primary Key
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,13 +29,13 @@ public class Label {
     @Column
     private int revenue;
 
-    @OneToMany(mappedBy = "label", orphanRemoval = true)
+    @OneToMany(mappedBy = "label", orphanRemoval = true) // One Label can have many artists
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Artist> artistList;
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id") // A label can have one user
     private User user;
 
     public Label() {

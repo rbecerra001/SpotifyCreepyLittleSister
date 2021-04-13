@@ -14,9 +14,9 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
+    @Id // Primary Key
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Primary Key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -29,23 +29,23 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // won't be able to see the password after its set
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL) // removing a user will remove all of its songs, artists labels, and genres
+    @OneToOne(cascade = CascadeType.ALL) // a user has a profile and removing a user will remove all of its songs, artists labels, and genres and its profile
     @JoinColumn(name = "profile_id", referencedColumnName = "id") // foreign key
     private UserProfile userProfile;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user") // user has many artists
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Artist> artistList;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user") // user has many songs
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Song> songList;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user") // user has many labels
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Label> labelList;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user") // user has many genres
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Genre> genreList;
 

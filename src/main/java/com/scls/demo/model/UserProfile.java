@@ -4,10 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+/*
+ * UserProfile Model creates a table named profiles in the database
+ * It has the columns: id, firstName, lastName, profileDescription
+ */
 @Entity
 @Table(name = "profiles")
 public class UserProfile {
-    @Id
+    @Id // primary key
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +22,7 @@ public class UserProfile {
     @Column
     private String profileDescription;
     @JsonIgnore
-    @OneToOne(mappedBy = "userProfile")
+    @OneToOne(mappedBy = "userProfile")  // a profile as a user
     private User user;
 
     public UserProfile() {
