@@ -11,9 +11,11 @@ import java.util.List;
 @Table(name="genres")
 public class Genre {
 
+    // the following are private variables which are the columns for the genre model
+
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // this will generate a unique id for each of the artists created
     private Long id;
 
     @Column
@@ -34,12 +36,14 @@ public class Genre {
     public Genre() {
     }
 
+    // the constructors for the genre class
     public Genre(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
 
+    // the following are the getters and setters for the variables in the genre class
     public Long getId() {
         return id;
     }
