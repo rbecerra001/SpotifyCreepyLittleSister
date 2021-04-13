@@ -36,11 +36,11 @@ public class UserService {
     }
 
     public User createUser(User userObject){
-        if (!userRepository.existsByEmail(userObject.getEmail())){
+        if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())){
             userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
             return userRepository.save(userObject);
         }else{
-            throw  new InformationExistException("The user with " + userObject.getEmail()+  " already exists.");
+            throw  new InformationExistException("The user with " + userObject.getEmailAddress()+  " already exists.");
         }
     }
 
@@ -53,7 +53,7 @@ public class UserService {
     }
 
     public User findUserByEmailAddress(String email) {
-        return userRepository.findUserByEmail(email);
+        return userRepository.findByEmailAddress(email);
     }
 
 }
