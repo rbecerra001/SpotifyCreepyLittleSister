@@ -35,7 +35,7 @@ public class GenreService {
     public Genre getGenre(Long genreId){
         System.out.println("Service calling getGenre ==>");
         Optional<Genre> genre = genreRepository.findById(genreId);
-        if(genre.isPresent()){
+        if(genre.isEmpty()){
             throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
         } else {
             return genre.get();
