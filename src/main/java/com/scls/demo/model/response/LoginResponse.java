@@ -1,4 +1,4 @@
-package com.scls.demo.model.Response;
+package com.scls.demo.model.response;
 
 public class LoginResponse {
     private String JWT;

@@ -1,4 +1,4 @@
-package com.scls.demo.model.Request;
+package com.scls.demo.model.request;
 
 public class LoginRequest {
     private String email;
