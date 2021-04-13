@@ -22,6 +22,7 @@ public class SongController {
     public String helloWorld(){
         return "Hello World";
     }
+    // This will test to make sure the database is running and ports are properly set up
 
     //http://localhost:9092/songs
     @GetMapping(path = "/songs")
@@ -29,6 +30,7 @@ public class SongController {
         System.out.println("Calling getSongs ==>");
         return SongService.getSongs();
     }
+    // his endpoint will call the service class to get all songs in the model
 
     //http://localhost:9092/songs/{songId}
     @GetMapping(path = "/songs/{songId}")
@@ -36,6 +38,7 @@ public class SongController {
         System.out.println("Calling getSong ==>");
         return SongService.getSong(songId);
     }
+    // his endpoint will call the service class to get a single song using the song ID
 
     //http://localhost:9092/artists/{artistId}/genres/{genreId}/songs
     @PostMapping(path="/artists/{artistId}/genres/{genreId}/songs")
@@ -43,6 +46,8 @@ public class SongController {
         System.out.println("Calling createSong ==>");
         return SongService.createSong(artistId, genreId, songObject);
     }
+    // his endpoint will call the service class to create a song that requires an artist to exist as well as a genre
+    // in order to use the artist ID and genre ID
 
     //http://localhost:9092/songs/{songId}
     @PutMapping(path="/songs/{songId}")
@@ -50,6 +55,7 @@ public class SongController {
         System.out.println("Calling updateSong ==>");
         return SongService.updateSong(songId, songObject);
     }
+    // his endpoint will call the service class to update a song using the song ID
 
     //http://localhost:9092/songs/{songId}
     @DeleteMapping(path="/songs/{songId}")
@@ -57,4 +63,5 @@ public class SongController {
         System.out.println("Calling deleteSong ==>");
         return SongService.deleteSong(songId);
     }
+    // his endpoint will call the service class to delete a song using the song ID
 }

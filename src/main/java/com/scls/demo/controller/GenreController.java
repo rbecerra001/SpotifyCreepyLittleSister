@@ -24,7 +24,7 @@ public class GenreController {
         System.out.println("calling getGenres ==>");
         return GenreService.getGenres();
     }
-    // this endpoint will call the service call to get all genres in the model
+    // this endpoint will call the service class to get all genres in the model
 
     //http://localhost:9092/genres/{genreId}
     @GetMapping(path="/genres/{genreId}")
@@ -32,7 +32,7 @@ public class GenreController {
         System.out.println("calling getGenre ==>");
         return GenreService.getGenre(genreId);
     }
-    // this endpoint will call the service call to get a single genre in the model using the genre ID
+    // this endpoint will call the service class to get a single genre in the model using the genre ID
 
     //http://localhost:9092/genres/{genreId}/songs
     @GetMapping (path="/genres/{genreId}/songs")
@@ -40,7 +40,7 @@ public class GenreController {
         System.out.println("calling getSongsinGenre ==>");
         return GenreService.getSongsinGenre(genreId);
     }
-    // this endpoint will call the service call to get all the songs in a single genre using the genre ID
+    // this endpoint will call the service class to get all the songs in a single genre using the genre ID
 
     //http://localhost:9092/genres/{genreId}/songs/{songId}
     @GetMapping (path="/genres/{genreId}/songs/{songId}")
@@ -48,7 +48,7 @@ public class GenreController {
         System.out.println("calling getSonginGenre ==>");
         return GenreService.getSonginGenre(genreId, songId);
     }
-    // this endpoint will call the service call to get a single song in a specific genre using both the genre ID and song ID
+    // this endpoint will call the service class to get a single song in a specific genre using both the genre ID and song ID
 
     //http://localhost:9092/genres
     @PostMapping(path="/genres")
@@ -56,7 +56,7 @@ public class GenreController {
         System.out.println("Calling createGenre ==>");
         return GenreService.createGenre(genreObject);
     }
-    // this endpoint will call the service call to allow the user to create a genre
+    // this endpoint will call the service class to allow the user to create a genre
 
     //http://localhost:9092/genres/{genreId}
     @PutMapping(path="/genres/{genreId}")
@@ -64,7 +64,7 @@ public class GenreController {
         System.out.println("Calling updateGenre ==>");
         return GenreService.updateGenre(genreId, genreObject);
     }
-    // this endpoint will call the service call to allow the user the user to update the genre
+    // this endpoint will call the service class to allow the user the user to update the genre
 
     //http://localhost:9092/genres/{genreId}
     @DeleteMapping(path="/genres/{genreId}")
@@ -72,5 +72,5 @@ public class GenreController {
         System.out.println("Calling deleteGenre ==>");
         return GenreService.deleteGenre(genreId);
     }
-    // this endpoint will call the service call to allow the user to delete a single genre using the genre ID
+    // this endpoint will call the service class to allow the user to delete a single genre using the genre ID
 }
