@@ -11,39 +11,40 @@
 6. Created Controllers, Services, and Repositories
 7. Made the decision that items in the models can have the same name
 9. Added JWTs allowing a user to register and log in
+10. Went through and added comments where they were missing (maybe we should have done this along the way 😉)
 
 
 ### Endpoints
-| Request Type | URL| Request Body | Action | Access |
-|--|--|--|--|--|
-| GET | /songs | None | get all the songs | Private |
-| GET | /songs/{songId} | None | get a single song | Private |
-| POST | /artists/{artistId}/genres/{genreId}/songs | song info | creates a single song with an artist in a genre | Private |
-| PUT | /songs/{songId} | song info | updates a single song | Private |
-| DELETE | /songs/{songId} | None | delete a single song | Private |
-| GET | /artists | None | get all artists | Private |
-| GET | /artists/{artistId} | None | get a single artist | Private |
-| GET | /artists/{artistId}/songs | None | gets all songs by an artist | Private |
-| GET | /artists/{artistId}/songs/{songId} | None | gets a single song by an artist | Private |
-| POST | /artists | artist info | creates a single artist | Private |
-| POST | /labels/{labelId}/artists | artist info | creates a single artist with a label | Private |
-| PUT | /artists/{artistId} | artist info | updates a single artist | Private |
-| DELETE | /artists/{artistId} | None | deletes a single artist | Private |
-| GET | /labels | None | Get all labels | Private |
-| GET | /labels/{labelId} | None | Gets a single label | Private |
-| GET | /labels/{labelId}/artists | None | Gets all artists in a label | Private |
-| GET | /labels/{labelId}/artists/{artistId} | None | Gets a single artist in a label | Private |
-| POST | /labels | Label info | Creates a new label | Private |
-| PUT | /labels/{labelId} | Label info | Updates a label | Private |
-| DELETE | /label/{labelId} | None | Deletes a label | Private |
+| Request Type | URL| Request Body | Request Header | Action | Access |
+|--|--|--|--|--|--|
+| GET | /songs | None | Authorization Bearer TOKEN |  get all the songs | Private |
+| GET | /songs/{songId} | None | Authorization Bearer TOKEN | get a single song | Private |
+| POST | /artists/{artistId}/genres/{genreId}/songs | song info | Authorization Bearer TOKEN | creates a single song with an artist in a genre | Private |
+| PUT | /songs/{songId} | song info | Authorization Bearer TOKEN | updates a single song | Private |
+| DELETE | /songs/{songId} | None | Authorization Bearer TOKEN | delete a single song | Private |
+| GET | /artists | None | Authorization Bearer TOKEN | get all artists | Private |
+| GET | /artists/{artistId} | None | Authorization Bearer TOKEN | get a single artist | Private |
+| GET | /artists/{artistId}/songs | None | Authorization Bearer TOKEN | gets all songs by an artist | Private |
+| GET | /artists/{artistId}/songs/{songId} | None | Authorization Bearer TOKEN | gets a single song by an artist | Private |
+| POST | /artists | artist info | Authorization Bearer TOKEN | creates a single artist | Private |
+| POST | /labels/{labelId}/artists | artist info | Authorization Bearer TOKEN | creates a single artist with a label | Private |
+| PUT | /artists/{artistId} | artist info | Authorization Bearer TOKEN | updates a single artist | Private |
+| DELETE | /artists/{artistId} | None | Authorization Bearer TOKEN | deletes a single artist | Private |
+| GET | /labels | None | Authorization Bearer TOKEN | Get all labels | Private |
+| GET | /labels/{labelId} | None | Authorization Bearer TOKEN | Gets a single label | Private |
+| GET | /labels/{labelId}/artists | None | Authorization Bearer TOKEN | Gets all artists in a label | Private |
+| GET | /labels/{labelId}/artists/{artistId} | None | Authorization Bearer TOKEN | Gets a single artist in a label | Private |
+| POST | /labels | Label info | Authorization Bearer TOKEN | Creates a new label | Private |
+| PUT | /labels/{labelId} | Label info | Authorization Bearer TOKEN | Updates a label | Private |
+| DELETE | /label/{labelId} | None | Authorization Bearer TOKEN | Deletes a label | Private |
 | GET | /genres | None | gets all genres | Private |
-| GET | /genres/{genreId} | None | gets a single genre | Private |
-| GET | /genres/{genreId}/songs | None | gets all songs in a genre | Private |
-| POST | /genres | genre info | creates a single genre | Private |
-| PUT | /genres/{genreId} | genre info | updates a single genre | Private |
-| DELETE | /genres/{genreId} | None | deletes a single genre | Private |
-| POST | /auth/users/register | user info | registers a user | Public |
-| POST | /auth/users/login  | user info | logs a user in | Public |
+| GET | /genres/{genreId} | None | Authorization Bearer TOKEN | gets a single genre | Private |
+| GET | /genres/{genreId}/songs | None | Authorization Bearer TOKEN | gets all songs in a genre | Private |
+| POST | /genres | genre info | Authorization Bearer TOKEN | creates a single genre | Private |
+| PUT | /genres/{genreId} | genre info | Authorization Bearer TOKEN | updates a single genre | Private |
+| DELETE | /genres/{genreId} | None | Authorization Bearer TOKEN | deletes a single genre | Private |
+| POST | /auth/users/register | user info | None | registers a user | Public |
+| POST | /auth/users/login  | user info | None | logs a user in | Public |
 
 ## Planning
 
