@@ -26,12 +26,14 @@ public class LabelController {
         System.out.println("Calling getLabels()");
         return labelService.getLabels();
     }
+
     // http://localhost:9092/labels/{labelId}
     @GetMapping(path = "/labels/{labelId}")
     public Label getLabel(@PathVariable Long labelId){
         System.out.println("Calling getLabel()");
         return labelService.getLabel(labelId);
     }
+
     // http://localhost:9092/labels/{labelId}/artists
     @GetMapping(path = "/labels/{labelId}/artists")
     public List<Artist> getLabelArtists(@PathVariable Long labelId){
