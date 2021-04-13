@@ -7,26 +7,30 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.List;
 
+/*
+ * User Model creates a table named users in the database
+ * It has the columns: id, username, emailAddress, password, profile_id
+ */
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Primary Key
     private Long id;
 
     @Column
     private String username;
 
-    @Column(unique = true)
+    @Column(unique = true) // no two email addresses are the same
     private String emailAddress;
 
     @Column
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // won't be able to see the password after its set
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL) // removing a user will remove all of its songs, artists labels, and genres
+    @JoinColumn(name = "profile_id", referencedColumnName = "id") // foreign key
     private UserProfile userProfile;
 
     @OneToMany(mappedBy = "user")
