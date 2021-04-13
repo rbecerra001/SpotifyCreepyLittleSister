@@ -1,5 +1,6 @@
 package com.scls.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -27,6 +28,11 @@ public class Label {
     @OneToMany(mappedBy = "label", orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Artist> artistList;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Label() {
     }
@@ -86,5 +92,13 @@ public class Label {
 
     public void setArtistList(List<Artist> artistList) {
         this.artistList = artistList;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
