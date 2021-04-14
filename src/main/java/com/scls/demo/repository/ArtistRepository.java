@@ -4,6 +4,9 @@ import com.scls.demo.model.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
 /*
  * ArtistRepository extends the class JpaRepository thus inheriting its methods. It is an interface for the
  * Artist entity.
@@ -12,4 +15,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
+    List<Artist> findByUserId(Long userId);
+    Optional<Artist> findByIdAndUserId(Long artistId, Long userId);
 }
