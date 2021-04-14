@@ -4,6 +4,8 @@ import com.scls.demo.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /*
  * GenreRepository extends the class JpaRepository thus inheriting its methods. It is an interface for the
  * Genre entity.
@@ -12,4 +14,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface GenreRepository extends JpaRepository<Genre, Long> {
+    Genre findByName(String genreName);
+    List<Genre> findByUserId(Long userId);
+    Genre findByIdAndUserId(Long genreId, Long userId);
+    Genre findByUserIdAndName(Long userId, String genreName);
 }

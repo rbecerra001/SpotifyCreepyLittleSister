@@ -4,6 +4,8 @@ import com.scls.demo.model.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /*
  * SongRepository extends the class JpaRepository thus inheriting its methods. It is an interface for the
  * Song entity.
@@ -12,4 +14,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SongRepository extends JpaRepository<Song, Long> {
+    List<Song> findByUserId(Long userId);
+    Song findByIdAndUserId(Long songId, Long userId);
+    Song findByNameAndUserId(String songName, Long userId);
+    List<Song> findByGenreIdAndUserId(Long genreId, Long userId);
+
 }

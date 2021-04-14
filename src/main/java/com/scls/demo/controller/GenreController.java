@@ -68,7 +68,7 @@ public class GenreController {
 
     //http://localhost:9092/genres/{genreId}
     @DeleteMapping(path="/genres/{genreId}")
-    public Optional<Genre> deleteGenre(@PathVariable Long genreId){
+    public Genre deleteGenre(@PathVariable Long genreId){
         System.out.println("Calling deleteGenre ==>");
         return genreService.deleteGenre(genreId);
     }

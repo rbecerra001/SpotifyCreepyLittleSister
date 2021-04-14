@@ -1,13 +1,15 @@
 package com.scls.demo.service;
 
+import com.scls.demo.exception.InformationExistException;
 import com.scls.demo.exception.InformationNotFoundException;
 import com.scls.demo.model.Genre;
 import com.scls.demo.model.Song;
 import com.scls.demo.repository.GenreRepository;
 import com.scls.demo.repository.SongRepository;
+import com.scls.demo.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +23,6 @@ public class GenreService {
     public void setSongRepository(SongRepository songRepository){
         this.songRepository = songRepository;
     }
-
     @Autowired
     public void setGenreRepository(GenreRepository genreRepository){
         this.genreRepository = genreRepository;
@@ -29,84 +30,94 @@ public class GenreService {
 
     public List<Genre> getGenres(){
         System.out.println("calling getGenres ==>");
-        return genreRepository.findAll();
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(userDetails.getUser());
+        List<Genre> genres = genreRepository.findByUserId(userDetails.getUser().getId());
+        if(genres.isEmpty()){
+            throw new InformationNotFoundException("no genres found for that user id" + userDetails.getUser().getId());
+        } else{
+            return genres;
+        }
     }
 
     public Genre getGenre(Long genreId){
         System.out.println("Service calling getGenre ==>");
-        Optional<Genre> genre = genreRepository.findById(genreId);
-        if(genre.isEmpty()){
-            throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
-            // if no genre with that ID exists, throws an exception
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Genre genre = genreRepository.findByIdAndUserId(genreId, userDetails.getUser().getId());
+        if(genre == null){
+            throw new InformationNotFoundException("genre with id" + genreId + " not found");
         } else {
-            return genre.get();
-            // if a genre with that ID does exist, then it'll return it
+            return genre;
         }
     }
 
     public List<Song> getSongsinGenre(Long genreId){
         System.out.println("Service calling getSongsinGenre ==>");
-        Optional<Genre> genre = genreRepository.findById(genreId);
-        if(genre.isPresent()){
-        // checks to see if there is a genre with the requested ID
-            return genre.get().getSongList();
-            // if it exists, it'll return all songs in the genre
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Genre genre = genreRepository.findByIdAndUserId(genreId, userDetails.getUser().getId());
+        if (genre != null) {
+            return genre.getSongList();
         } else {
-            throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
-            // if no genre with ID exists then an exception error is thrown
+            throw new InformationNotFoundException("Genre with id " + genreId + " not found");
         }
     }
 
     public Song getSonginGenre(Long genreId, Long songId){
         System.out.println("Service calling getSonginGenre ==>");
-        Optional<Genre> genre = genreRepository.findById(genreId);
-        if(genre.isPresent()){
-        // checks to see if there is a genre with the requested ID
-            Optional<Song> song = songRepository.findById(songId);
-            if(song.isPresent()){
-            // checks to see if there is a song with the requested ID
-                return song.get();
-                // if it does exist, then till return that song
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Genre genre = genreRepository.findByIdAndUserId(genreId, userDetails.getUser().getId());
+        if (genre != null) {
+            Optional<Song> song = songRepository.findByGenreIdAndUserId(genreId, userDetails.getUser().getId()).stream().filter(
+                    p -> p.getId().equals(songId)).findFirst();
+            if (song.isEmpty()) {
+                throw new InformationNotFoundException("song with id " + songId + " not found");
             } else {
-                throw new InformationNotFoundException("Song with id: " + songId + "does not exist.");
-                // if no song with ID exists then an exception error is thrown
+                return song.get();
             }
         } else {
-            throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
-            // if no genre with ID exists then an exception error is thrown
+            throw new InformationNotFoundException("Genre with id " + genreId + " not found");
         }
     }
 
     public Genre createGenre(Genre genreObject){
         System.out.println("Service calling createGenre ==>");
-        return genreRepository.save(genreObject);
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Genre genre = genreRepository.findByUserIdAndName(userDetails.getUser().getId(), genreObject.getName());
+        if (genre != null){
+            throw new InformationExistException("Genre with name " + genreObject.getName() + " already exists");
+        }else{
+            genreObject.setUser(userDetails.getUser());
+            return genreRepository.save(genreObject);
+        }
     }
 
     public Genre updateGenre(Long genreId, Genre genreObject){
         System.out.println("Service calling updateGenre ==>");
-        Optional<Genre> genre = genreRepository.findById(genreId);
-        if(genre.isPresent()){
-        // checks to see if there is a genre with the requested ID
-            Genre updateGenre = genreRepository.findById(genreId).get();
-            updateGenre.setName(genreObject.getName());
-            updateGenre.setDescription(genreObject.getDescription());
-            return genreRepository.save(updateGenre);
-        } else {
-            throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
-            // if no genre with ID exists then an exception error is thrown
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Genre genre = genreRepository.findByIdAndUserId(genreId, userDetails.getUser().getId());
+        if (genre != null){
+            if (genreObject.getName().equals(genre.getName())) {
+                throw new InformationExistException("genre " + genre.getName() + " is already exists");
+            } else {
+                genre.setName(genreObject.getName());
+                genre.setDescription(genreObject.getDescription());
+                genre.setUser(userDetails.getUser());
+                return genreRepository.save(genre);
+            }
+        }else{
+            throw new InformationNotFoundException("Cannot update genre at id " + genreId + " because it does not exist");
         }
     }
 
-    public Optional<Genre> deleteGenre(Long genreId){
+    public Genre deleteGenre(Long genreId){
         System.out.println("Service calling deleteGenre ==>");
-        Optional<Genre> genre = genreRepository.findById(genreId);
-        if(genre.isPresent()){
-        // checks to see if there is a genre with the requested ID
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Genre genre = genreRepository.findByIdAndUserId(genreId, userDetails.getUser().getId());
+        if(genre != null){
             genreRepository.deleteById(genreId);
             return genre;
-        } else {
-            throw new InformationNotFoundException("Genre with id " + genreId + " does not exist");
-            // if no genre with ID exists then an exception error is thrown
+        } else{
+            throw new InformationNotFoundException("genre with id " + genreId + " not found");
         }
     }
 }
