@@ -12,7 +12,7 @@
 7. Made the decision that items in the models can have the same name
 8. Added JWTs allowing a user to register and log in
 9. Went through and added comments where they were missing (maybe we should have done this along the way 😉)
-
+10. Added Tests
 
 ### Endpoints
 | Request Type | URL| Request Body | Request Header | Action | Access |
