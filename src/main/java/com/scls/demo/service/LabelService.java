@@ -4,7 +4,9 @@ import com.scls.demo.exception.InformationNotFoundException;
 import com.scls.demo.model.Artist;
 import com.scls.demo.model.Label;
 import com.scls.demo.repository.LabelRepository;
+import com.scls.demo.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +31,9 @@ public class LabelService {
      */
     public List<Label> getLabels(){
         System.out.println("Calling getLabels() in service");
-        return labelRepository.findAll();
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        return labelRepository.findByUserId(userDetails.getUser().getId());
     }
 
     /*
@@ -39,7 +43,9 @@ public class LabelService {
      */
     public Label getLabel(Long labelId){
         System.out.println("Calling getLabel() in service");
-        Optional<Label> label = labelRepository.findById(labelId);
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Optional<Label> label = labelRepository.findByIdAndUserId(labelId, userDetails.getUser().getId());
         if(label.isPresent()){
             return label.get();
         }else{
@@ -81,6 +87,9 @@ public class LabelService {
      */
     public Label createLabel(Label labelObject){
         System.out.println("Calling createLabel() in service");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        labelObject.setUser(userDetails.getUser());
         return labelRepository.save(labelObject);
     }
 
@@ -106,7 +115,9 @@ public class LabelService {
      */
     public void deleteLabel(Long labelId){
         System.out.println("Calling deleteLabel() in service");
-        if(labelRepository.findById(labelId).isPresent()){
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        if(labelRepository.findByIdAndUserId(labelId, userDetails.getUser().getId()).isPresent()){
             labelRepository.deleteById(labelId);
         }else{
             throw new InformationNotFoundException("Label with id " + labelId + " does not exist ");

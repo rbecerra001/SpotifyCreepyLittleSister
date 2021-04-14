@@ -7,7 +7,9 @@ import com.scls.demo.model.Label;
 import com.scls.demo.model.Song;
 import com.scls.demo.repository.ArtistRepository;
 import com.scls.demo.repository.LabelRepository;
+import com.scls.demo.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,7 +41,9 @@ public class ArtistService {
      */
     public List<Artist> getArtists(){
         System.out.println("Calling getArtists() in service");
-        return artistRepository.findAll();
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        return artistRepository.findByUserId(userDetails.getUser().getId());
     }
 
     /*
@@ -49,7 +53,9 @@ public class ArtistService {
      */
     public Artist getArtist(Long artistId){
         System.out.println("Calling getArtist() in service");
-        Optional<Artist> artist = artistRepository.findById(artistId);
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        Optional<Artist> artist = artistRepository.findByIdAndUserId(artistId,userDetails.getUser().getId());
         if(artist.isPresent()){
             return artist.get();
         }else{
@@ -91,6 +97,9 @@ public class ArtistService {
      */
     public Artist createArtist(Artist artistObject){
         System.out.println("Calling createArtist() in service");
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        artistObject.setUser(userDetails.getUser());
         return artistRepository.save(artistObject);
     }
 
@@ -134,7 +143,9 @@ public class ArtistService {
      */
     public void deleteArtist(Long artistId){
         System.out.println("Calling deleteArtist() in service");
-        if(artistRepository.findById(artistId).isPresent()){
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        if(artistRepository.findByIdAndUserId(artistId, userDetails.getUser().getId()).isPresent()){
             artistRepository.deleteById(artistId);
         }else{
             throw new InformationNotFoundException("Artist with id " + artistId + " does not exist");

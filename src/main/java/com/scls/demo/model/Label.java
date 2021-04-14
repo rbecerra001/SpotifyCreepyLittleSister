@@ -16,7 +16,6 @@ import java.util.List;
 public class Label {
 
     // the following are private variables which are the columns for the label model
-
     @Id // Primary Key
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY) // this will generate a unique id for each of the artists created
