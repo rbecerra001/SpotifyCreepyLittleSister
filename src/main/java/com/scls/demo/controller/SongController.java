@@ -59,7 +59,7 @@ public class SongController {
 
     //http://localhost:9092/songs/{songId}
     @DeleteMapping(path="/songs/{songId}")
-    public Optional<Song> deleteSong(@PathVariable Long songId){
+    public Song deleteSong(@PathVariable Long songId){
         System.out.println("Calling deleteSong ==>");
         return songService.deleteSong(songId);
     }

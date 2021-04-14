@@ -59,7 +59,7 @@ public class SongService {
     public Song createSong(Long artistId, Long genreId, Song songObject){
         System.out.println("Service calling createSong ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Artist artist = artistRepository.findByIdAndUserId(artistId, userDetails.getUser().getId());
+        Artist artist = artistRepository.findByIdAndUserId(artistId, userDetails.getUser().getId()).get();
         if (artist == null) {
             throw new InformationNotFoundException("artist with id " + artistId + " not found");
         }
@@ -96,7 +96,7 @@ public class SongService {
         }
     }
 
-    public Optional<Song> deleteSong(Long songId){
+    public Song deleteSong(Long songId){
         System.out.println("Service calling deleteSong ==>");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Song song = songRepository.findByIdAndUserId(songId, userDetails.getUser().getId());
