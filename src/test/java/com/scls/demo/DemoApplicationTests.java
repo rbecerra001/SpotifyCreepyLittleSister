@@ -6,7 +6,9 @@ import com.scls.demo.controller.*;
 import com.scls.demo.model.*;
 import com.scls.demo.model.Request.*;
 import com.scls.demo.repository.GenreRepository;
+import com.scls.demo.security.JWTUtils;
 import com.scls.demo.service.GenreService;
+import com.scls.demo.service.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,13 +18,23 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class ProductServiceTest {
+class GenreServiceTest {
     @Mock
     private GenreRepository genreRepository;
     @Autowired
@@ -59,40 +71,65 @@ class ProductServiceTest {
 
 // --------------------------------------------------------------------
 
-//@SpringBootTest
-//class DemoApplicationTests {
-//
-//    @Autowired
-//    private GenreController genreController;
-//
-//    @Autowired
-//    private UserController userController;
-//
-//    @Test
-//    void contextLoads() {
-//    }
-//
-//    @Test
-//    public void createUser(){
-//        User user = new User(null, "Roger", "rbecerra@gmail.com", "6789");
-//
-//        User expected = user;
-//        User actual = userController.createUser(user);
-//        System.out.println(actual);
-//
-//        assertEquals(expected, actual);
-//
-//    }
-//
-//    @Test
-//    public void loginUser(){
-//        LoginRequest loginRequest = new LoginRequest();
-//        User expected = user;
-//        User actual = userController.createUser(user);
-//        System.out.println(actual);
-//
-//        assertEquals(expected, actual);
-//    }
+@SpringBootTest
+class DemoApplicationTests {
+
+    @Autowired
+    private GenreController genreController;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserController userController;
+    /**Main entry point for server-side Spring MVC test support.**/
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    void contextLoads() {
+    }
+
+    @Test
+    public void createUser() {
+        User user = new User(null, "Roger", "rbecerra@gmail.com", "6789");
+
+        User expected = user;
+        User actual = userController.createUser(user);
+        System.out.println(actual);
+
+        assertEquals(expected, actual);
+
+    }
+
+    private static String createUserInJson (String email, String password) {
+            return "{ \"email\": \"" + email + "\", " +
+                    "\"password\":\"" + password + "\"}";
+    }
+
+    @Test
+    public void login_Success() throws Exception{
+        String test = "hello world";
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/auth/users/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(createUserInJson("rbecerra@gmail.com","6789"));
+        when(userService.loginUser(any())).thenReturn(test);
+        MvcResult result = mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"token\":\"123456\"}"))
+                .andReturn();
+        System.out.println(result.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void loginUser() {
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail("rbecerra@gmail.com");
+        loginRequest.setPassword("6789");
+        ResponseEntity<?> actual = userController.loginUser(loginRequest);
+//        System.out.println(actual.get());
+    }
+}
+
 //
 //    @Test
 //    public void testCreateGenre(){
