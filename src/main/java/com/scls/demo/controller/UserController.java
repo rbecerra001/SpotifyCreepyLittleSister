@@ -1,7 +1,7 @@
 package com.scls.demo.controller;
 
 import com.scls.demo.model.User;
-import com.scls.demo.model.request.LoginRequest;
+import com.scls.demo.model.Request.LoginRequest;
 import com.scls.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

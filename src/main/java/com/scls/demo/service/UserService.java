@@ -2,7 +2,7 @@ package com.scls.demo.service;
 
 import com.scls.demo.exception.InformationExistException;
 import com.scls.demo.model.User;
-import com.scls.demo.model.request.LoginRequest;
+import com.scls.demo.model.Request.LoginRequest;
 import com.scls.demo.model.response.LoginResponse;
 import com.scls.demo.repository.UserRepository;
 import com.scls.demo.security.JWTUtils;
