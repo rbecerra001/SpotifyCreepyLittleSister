@@ -1,7 +1,7 @@
 package com.scls.demo.controller;
 
 import com.scls.demo.model.User;
-import com.scls.demo.model.Request.LoginRequest;
+import com.scls.demo.model.request.LoginRequest;
 import com.scls.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class UserController {
     }
 
     /*
-     * http://localhost:9092/auth/users/register
+     * http://localhost:PORTNUMBER/auth/users/register
      *
      * Creates a new user
      * params: User userObject - information needed to register a user (username(required), emailAddress(required), password(required))
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     /*
-     * http://localhost:9092/auth/users/login
+     * http://localhost:PORTNUMBER/auth/users/login
      *
      * Logs a user in
      * params: LoginRequest loginRequest - information needed for a login request (email(required), password(required))

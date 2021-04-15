@@ -1,4 +1,4 @@
-package com.scls.demo.model.Request;
+package com.scls.demo.model.request;
 
 // this class will allow the user to login with the user name and password
 public class LoginRequest {

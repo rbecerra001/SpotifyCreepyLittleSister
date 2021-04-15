@@ -24,7 +24,7 @@ public class ArtistController {
     }
 
     /*
-     * http://localhost:9092/artists
+     * http://localhost:PORTNUMBER/artists
      *
      * Gets all artists in artist model.
      * params: none
@@ -37,7 +37,7 @@ public class ArtistController {
     }
 
     /*
-     * http://localhost:9092/artists/{artistId}
+     * http://localhost:PORTNUMBER/artists/{artistId}
      *
      * Get a single artist in artist model.
      * params: Long artistId - id of artist
@@ -50,7 +50,7 @@ public class ArtistController {
     }
 
     /*
-     * http://localhost:9092/artists/{artistId}/songs
+     * http://localhost:PORTNUMBER/artists/{artistId}/songs
      *
      * Gets all the songs from a single artist.
      * params: Long artistId - id of artist
@@ -63,7 +63,7 @@ public class ArtistController {
     }
 
     /*
-     * http://localhost:9092/artists/{artistId}/songs/{songId}
+     * http://localhost:PORTNUMBER/artists/{artistId}/songs/{songId}
      *
      * Get a single song from a single artist.
      * params: Long artistId - id of artist
@@ -77,7 +77,7 @@ public class ArtistController {
     }
 
     /*
-     * http://localhost:9092/artists
+     * http://localhost:PORTNUMBER/artists
      *
      * Creates a single artist with out a Label
      * params: Artist artistObject - information needed to create an artist (name(required), description, monthly_streamers)
@@ -90,7 +90,7 @@ public class ArtistController {
     }
 
     /*
-     * http://localhost:9092/labels/{labelId}/artists
+     * http://localhost:PORTNUMBER/labels/{labelId}/artists
      *
      * Creates a single artist with a Label
      * params: Artist artistObject - information needed to create an artist (name(required), description, monthly_streamers)
@@ -104,7 +104,7 @@ public class ArtistController {
     }
 
     /*
-     * http://localhost:9092/artists/{artistId}
+     * http://localhost:PORTNUMBER/artists/{artistId}
      *
      * Updates a single artist
      * params: Artist artistObject - information needed to updated an artist (name(required), description, monthly_streamers)

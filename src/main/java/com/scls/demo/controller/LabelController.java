@@ -24,7 +24,7 @@ public class LabelController {
     }
 
     /*
-     * http://localhost:9092/labels
+     * http://localhost:PORTNUMBER/labels
      *
      * Gets all labels in label model.
      * params: none
@@ -37,7 +37,7 @@ public class LabelController {
     }
 
     /*
-     * http://localhost:9092/labels/{labelId}
+     * http://localhost:PORTNUMBER/labels/{labelId}
      *
      * Gets a single label in label model.
      * params: Long labelId - id of label to get
@@ -50,7 +50,7 @@ public class LabelController {
     }
 
     /*
-     * http://localhost:9092/labels/{labelId}/artists
+     * http://localhost:PORTNUMBER/labels/{labelId}/artists
      *
      * Get all artists under a single label
      * params: Long labelId - id of label
@@ -63,7 +63,7 @@ public class LabelController {
     }
 
     /*
-     * http://localhost:9092/labels/{labelId}/artists/{artistId}
+     * http://localhost:PORTNUMBER/labels/{labelId}/artists/{artistId}
      *
      * Get a single artist under a single label
      * params: Long labelId - id of label
@@ -77,7 +77,7 @@ public class LabelController {
     }
 
     /*
-     * http://localhost:9092/labels
+     * http://localhost:PORTNUMBER/labels
      *
      * Creates a single label
      * params: Label labelObject - information needed to create a label (name(required), numOfArtist, revenue)
@@ -90,7 +90,7 @@ public class LabelController {
     }
 
     /*
-     * http://localhost:9092/labels{labelId}
+     * http://localhost:PORTNUMBER/labels{labelId}
      *
      * Updates a single label
      * params: Label labelObject - information needed to update a label (name(required), numOfArtist, revenue)
@@ -104,7 +104,7 @@ public class LabelController {
     }
 
     /*
-     * http://localhost:9092/labels{labelId}
+     * http://localhost:PORTNUMBER/labels{labelId}
      *
      * Deletes a single label and all artists and songs connected to it
      * params: Long labelId - id of label to delete
