@@ -1,6 +1,7 @@
 # Spotify's Creepy Little Sister
 
 ## Introduction
+Spotify's Creepy Little Sister is a database which allows the user to keep track of their favorite 'Songs', 'Artists', 'Genres', and 'Labels' and how they are connected. 
 
 ## General Approach
 1. Planned
@@ -13,6 +14,7 @@
 8. Added JWTs allowing a user to register and log in
 9. Went through and added comments where they were missing (maybe we should have done this along the way 😉)
 10. Added Tests
+11. Ran into issues when trying to log in user for testing other endpoints
 
 ### Endpoints
 | Request Type | URL| Request Body | Request Header | Action | Access |
@@ -96,11 +98,18 @@ user will be notified by error statement.
 
 ## Technology Used
 
+1. Diagram.io
+2. IntelliJ (or some form of text editor)
+3. Spring Boot
+4. Maven
+5. pgAdmin
+6. postgres
+7. Postman
+8. JWT
+
 ## Installation Instructions
 1. Fork and clone the repository.
 2. Using postgres, create a database called `spotifycreepylittlesister`
-3. Open the file `SpotifyCreepyLittleSister/src/main/resources/application-dev.properties` and change lines 7 and 9 to be
-   your postgres username and password
+3. Open the file `SpotifyCreepyLittleSister/src/main/resources/application-dev.properties` and change lines 2 to the proper port number (9092 recommended) and 7 & 9 to be your postgres username and password
 4. Go into the  `SpotifyCreepyLittleSister` directory and run the application from your command line using `mvn spring-boot:run`
-5. Open the url `localhost:9092/helloworld`.  If the screen says `Hello World`, you're connected and should be able to register and login a user. 
-
+5. Open the url `localhost:{PORTNUMBER}/helloworld`.  If the screen says `Hello World`, you're connected and should be able to register and login a user.
