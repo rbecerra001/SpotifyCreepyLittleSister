@@ -114,6 +114,7 @@ public class ArtistService {
         Optional<Label> label = labelRepository.findById(labelId);
         if (label.isPresent()){
             Artist artist = createArtist(artistObject);
+            label.get().setNumOfArtists(label.get().getNumOfArtists() + 1);
             artist.setLabel(label.get());
             return artistRepository.save(artist);
         }else{
@@ -145,7 +146,12 @@ public class ArtistService {
         System.out.println("Calling deleteArtist() in service");
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
-        if(artistRepository.findByIdAndUserId(artistId, userDetails.getUser().getId()).isPresent()){
+        Optional<Artist> artist = artistRepository.findByIdAndUserId(artistId, userDetails.getUser().getId());
+        if(artist.isPresent()){
+            Label label = artist.get().getLabel();
+            if (label != null){
+                label.setNumOfArtists(label.getNumOfArtists() - 1);
+            }
             artistRepository.deleteById(artistId);
         }else{
             throw new InformationNotFoundException("Artist with id " + artistId + " does not exist");

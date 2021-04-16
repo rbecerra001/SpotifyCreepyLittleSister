@@ -26,7 +26,7 @@ public class UserService {
     @Autowired // dependency injection
     private AuthenticationManager authenticationManager;
     @Autowired // dependency injection
-    private UserDetailsService userDetailsService;
+    private UserDetailsService  userDetailsService;
     @Autowired // dependency injection
     private JWTUtils jwtUtils;
     @Autowired // dependency injection

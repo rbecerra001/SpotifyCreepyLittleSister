@@ -1,7 +1,7 @@
 # Spotify's Creepy Little Sister
 
 ## Introduction
-Spotify's Creepy Little Sister is a database which allows the user to keep track of their favorite 'Songs', 'Artists', 'Genres', and 'Labels' and how they are connected. 
+Spotify's Creepy Little Sister is a database which allows the user to keep track of their favorite `Songs`, `Artists`, `Genres`, and `Labels` and how they are connected. 
 
 ## General Approach
 1. Planned
@@ -98,14 +98,14 @@ user will be notified by error statement.
 
 ## Technology Used
 
-1. Diagram.io
+1. Diagram.io - used to create the ERD
 2. IntelliJ (or some form of text editor)
 3. Spring Boot
 4. Maven
 5. pgAdmin
 6. postgres
-7. Postman
-8. JWT
+7. Postman - used to test our end points
+8. JWT - used as security for 
 
 ## Installation Instructions
 1. Fork and clone the repository.
