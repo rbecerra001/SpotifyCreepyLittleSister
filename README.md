@@ -1,7 +1,7 @@
 # Spotify's Creepy Little Sister
 
 ## Introduction
-Spotify's Creepy Little Sister is a database which allows the user to keep track of their favorite 'Songs', 'Artists', 'Genres', and 'Labels' and how they are connected. 
+Spotify's Creepy Little Sister is a database which allows the user to keep track of their favorite `Songs`, `Artists`, `Genres`, and `Labels` and how they are connected. 
 
 ## General Approach
 1. Planned
