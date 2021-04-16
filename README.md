@@ -105,7 +105,7 @@ user will be notified by error statement.
 5. pgAdmin
 6. postgres
 7. Postman - used to test our end points
-8. JWT - used as security for 
+8. JWT - used as security for user login
 
 ## Installation Instructions
 1. Fork and clone the repository.

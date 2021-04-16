@@ -14,7 +14,6 @@ import java.util.List;
  */
 @Repository
 public interface GenreRepository extends JpaRepository<Genre, Long> {
-    Genre findByName(String genreName);
     List<Genre> findByUserId(Long userId);
     Genre findByIdAndUserId(Long genreId, Long userId);
     Genre findByUserIdAndName(Long userId, String genreName);

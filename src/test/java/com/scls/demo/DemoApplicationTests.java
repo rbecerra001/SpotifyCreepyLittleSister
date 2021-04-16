@@ -35,6 +35,9 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
+/*
+ * These tests are still a work in progress but they are meant to test our controllers
+ */
 @ExtendWith(MockitoExtension.class)
 class GenreServiceTest {
     @Mock
