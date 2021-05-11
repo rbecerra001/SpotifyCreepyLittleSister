@@ -1,0 +1,21 @@
+<section>
+  <button (click)="getGenres()">Get All Genres</button>
+</section>
+
+<div *ngIf="genres">
+  <h4>All Genres</h4>
+  <ul>
+    <li *ngFor="let genre of genres">
+      {{genre.name}} -- {{genre.description}}
+      <button (click)="deleteGenre(genre)">delete</button>
+      <ul>
+        <li *ngFor="let song of genre.songList">
+          {{song.name}}
+      </ul>
+      <form (submit)="createSong(genre)">
+        <input [(ngModel)]="songName" name="songName" type="text" placeholder="new song" />
+        <input type="submit"/>
+      </form>
+    </li>
+  </ul>
+</div>

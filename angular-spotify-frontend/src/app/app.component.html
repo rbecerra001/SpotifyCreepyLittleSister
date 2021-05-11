@@ -1,0 +1,22 @@
+<nav>
+  <div class="nav-wrapper">
+    <a class="brand-logo" routerLink="/login">Spotify's Creepy Little Sister</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a routerLink="/genres">All Genres</a></li>
+
+      <span *ngIf="!this.currentUser">
+        <li><a routerLink="/signup">Sign Up</a></li>
+        <li><a routerLink="/login">Log In</a></li>
+      </span>
+      <span *ngIf="this.currentUser">
+        <li><a routerLink="/logout">LOG OUT</a></li>
+        <li>Hello,</li>
+      </span>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
