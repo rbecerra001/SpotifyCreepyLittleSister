@@ -12,7 +12,7 @@ export class ArtistsService {
 
   constructor(private http: HttpClient) { }
 
-  getGenres(): any {
+  getArtists(): any {
     const token = localStorage.getItem('token');
     const requestOptions = {
       headers: new HttpHeaders({
@@ -20,11 +20,11 @@ export class ArtistsService {
       }),
     };
     return this.http
-      .get(`${herokuUrl}/genres`, requestOptions);
+      .get(`${herokuUrl}/artists`, requestOptions);
   }
 
-  createGenre(newGenre): any {
-    console.log(newGenre);
+  createArtist(newArtist): any {
+    console.log(newArtist);
     const token = localStorage.getItem('token');
     const requestOptions = {
       headers: new HttpHeaders({
@@ -32,10 +32,10 @@ export class ArtistsService {
       }),
     };
     return this.http
-      .post(`${herokuUrl}/genres/`, newGenre, requestOptions);
+      .post(`${herokuUrl}/artists/`, newArtist, requestOptions);
   }
 
-  getGenre(genreId): any {
+  getArtist(artistId): any {
     const token = localStorage.getItem('token');
     const requestOptions = {
       headers: new HttpHeaders({
@@ -43,11 +43,10 @@ export class ArtistsService {
       }),
     };
     return this.http
-      .get(`${herokuUrl}/genres/${genreId}`, requestOptions);
+      .get(`${herokuUrl}/artists/${artistId}`, requestOptions);
   }
 
-  createSong(genre, newSong): any {
-    console.log('service: ', genre, newSong);
+  deleteArtist(artist): any {
     const token = localStorage.getItem('token');
     const requestOptions = {
       headers: new HttpHeaders({
@@ -55,28 +54,6 @@ export class ArtistsService {
       }),
     };
     return this.http
-      .post(`${herokuUrl}/genres/${genre.id}/songs`, newSong, requestOptions);
-  }
-
-  deleteGenre(genre): any {
-    const token = localStorage.getItem('token');
-    const requestOptions = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
-      }),
-    };
-    return this.http
-      .delete(`${herokuUrl}/genres/${genre.id}`, requestOptions);
-  }
-
-  deleteSong(genre, songId): any {
-    const token = localStorage.getItem('token');
-    const requestOptions = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${token}`
-      }),
-    };
-    return this.http
-      .delete(`${herokuUrl}/genres/${genre.id}/songs/${songId}`, requestOptions);
+      .delete(`${herokuUrl}/artists/${artist.id}`, requestOptions);
   }
 }

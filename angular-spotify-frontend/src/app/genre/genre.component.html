@@ -2,7 +2,7 @@
   <h4>{{genre.name}}</h4>
   <p>{{genre.description}}</p>
   <ul>
-    <li *ngFor="let genre of genre.songList">
+    <li *ngFor="let song of genre.songList">
       {{song.name}}
       <button (click)="deleteSong(genre)">delete</button>
     </li>
