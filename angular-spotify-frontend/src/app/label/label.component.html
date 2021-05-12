@@ -1,1 +1,11 @@
-<p>label works!</p>
+<div *ngIf="label">
+  <h4>{{label.name}}</h4>
+  <p>{{label.numOfArtists}}</p>
+  <p>{{label.revenue}}</p>
+  <ul>
+    <li *ngFor="let artist of label.artistList">
+      {{artist.name}}
+      <button (click)="deleteArtist(label)">delete</button>
+    </li>
+  </ul>
+</div>

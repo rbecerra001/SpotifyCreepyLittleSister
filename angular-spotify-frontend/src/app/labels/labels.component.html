@@ -1,1 +1,27 @@
-<p>labels works!</p>
+<section>
+  <button (click)="getLabels()">Get All Labels</button>
+</section>
+
+<div *ngIf="labels">
+  <h4>All Labels</h4>
+  <ul>
+    <li *ngFor="let label of labels">
+      {{label.name}}
+      {{label.numOfArtists}}
+      {{label.revenue}}
+      <button (click)="deleteLabel(label)">delete</button>
+      <ul>
+        <li *ngFor="let artist of label.artistList">
+          {{artist.name}}
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<h4>Create New Label</h4>
+<form (submit)="createLabel()">
+  <input [(ngModel)]="labelName" name="labelName" type="text" placeholder="name" />
+  <input [(ngModel)]="labelNumOfArtists" name="labelNumOfArtists" type="text" placeholder="numOfArtists" />
+  <input [(ngModel)]="labelRevenue" name="labelRevenue" type="text" placeholder="revenue" />
+  <input type="submit"/>
+</form>
