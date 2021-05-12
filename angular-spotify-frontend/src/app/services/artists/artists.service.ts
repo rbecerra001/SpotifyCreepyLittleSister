@@ -7,6 +7,7 @@ const herokuUrl = 'http://localhost:9092';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ArtistsService {
 
   constructor(private http: HttpClient) { }
