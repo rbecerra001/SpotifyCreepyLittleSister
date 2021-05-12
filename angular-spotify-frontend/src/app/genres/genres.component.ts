@@ -1,5 +1,5 @@
 import { GenresService } from 'src/app/services/genres/genres.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 declare const M;
 
 @Component({

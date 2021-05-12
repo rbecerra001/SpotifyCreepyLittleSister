@@ -1,1 +1,9 @@
-<p>songs works!</p>
+<div *ngIf="songs">
+  <h4>All Songs</h4>
+  <ul>
+    <li *ngFor="let song of songs">
+      {{song.name}} -- {{song.artist.name}} -- {{song.length}} -- {{song.releaseDate}}
+      <button (click)="deleteSong(song)">delete</button>
+    </li>
+  </ul>
+</div>

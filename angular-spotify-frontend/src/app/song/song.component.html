@@ -1,5 +1,4 @@
-<!--<p>song works!</p>-->
-<!--<form (submit)="createSong()">-->
-<!--  <input [(ngModel)]="songName" name="songName" type="text" placeholder="new song" />-->
-<!--  <input type="submit"/>-->
-<!--</form>-->
+<div *ngIf="song">
+  <h4>{{song.name}}</h4>
+  <p>{{song.artist.name}}, {{song.length}}, {{song.releaseDate}}</p>
+</div>
