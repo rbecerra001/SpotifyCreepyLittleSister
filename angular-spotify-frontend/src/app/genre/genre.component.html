@@ -1,0 +1,10 @@
+<div *ngIf="genre">
+  <h4>{{genre.name}}</h4>
+  <p>{{genre.description}}</p>
+  <ul>
+    <li *ngFor="let genre of genre.songList">
+      {{song.name}}
+      <button (click)="deleteSong(genre)">delete</button>
+    </li>
+  </ul>
+</div>

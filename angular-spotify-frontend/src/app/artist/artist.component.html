@@ -1,0 +1,27 @@
+<section>
+  <button (click)="getArtists()">Get All Artists</button>
+</section>
+
+<div *ngIf="artists">
+  <h4>All Artists</h4>
+  <ul>
+    <li *ngFor="let artist of artists">
+      {{artist.name}}
+      {{artist.description}}
+      {{artist.monthlystreamers}}
+      <button (click)="deleteArtist(artist)">delete</button>
+      <ul>
+        <li *ngFor="let song of artist.songList">
+          {{song.name}}
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<h4>Create New Artist</h4>
+<form (submit)="createArtist()">
+  <input [(ngModel)]="artistName" name="artistName" type="text" placeholder="name" />
+  <input [(ngModel)]="artistDescription" name="artistDescription" type="text" placeholder="description" />
+  <input [(ngModel)]="artistMonthlystreamers" name="artistMonthlystreamers" type="text" placeholder="monthlystreamers" />
+  <input type="submit"/>
+</form>
