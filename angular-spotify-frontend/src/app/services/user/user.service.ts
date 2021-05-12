@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -14,17 +14,23 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
+
   registerUser(newUser): any {
+    console.log("This is from register user" + newUser);
     console.log(newUser);
+    console.log(herokuUrl);
     return this.http
-      .post(`${herokuUrl}/auth/users/register`, newUser)
+      .post(`${herokuUrl}/auth/users/register`, newUser, this.httpOptions)
   }
 
   loginUser(user): void {
     console.log(user);
 
     this.http
-      .post(`${herokuUrl}/auth/users/login`, user)
+      .post(`${herokuUrl}/auth/users/login`, user, this.httpOptions)
       .subscribe(response => {
         const token = response['jwt'];
         localStorage.setItem('currentUser', `${user.email}`);
@@ -32,7 +38,7 @@ export class UserService {
         console.log(response, token);
         this.currentUser = user.email;
         this.searchSubject.next(this.currentUser);
-        this.router.navigate(['/categories']);
+        this.router.navigate(['/genres']);
       }, err => console.log(err));
   }
 

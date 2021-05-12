@@ -19,3 +19,10 @@
     </li>
   </ul>
 </div>
+
+<h4>Create New Genre</h4>
+<form (submit)="createGenre()">
+  <input [(ngModel)]="genreName" name="genreName" type="text" placeholder="name" />
+  <input [(ngModel)]="genreDescription" name="genreDescription" type="text" placeholder="description" />
+  <input type="submit"/>
+</form>

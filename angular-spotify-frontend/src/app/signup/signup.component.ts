@@ -12,8 +12,9 @@ export class SignupComponent implements OnInit {
   public password: string;
 
   registerUser(): void {
-    const newUser = {userName: this.userName, emailAddress: this.emailAddress, password: this.password};
-    this.userService.registerUser(newUser);
+    const newUser = {username: this.userName, emailAddress: this.emailAddress, password: this.password};
+    this.userService.registerUser(newUser)
+    .subscribe(response => console.log(response),err => console.log(err));
   }
 
   constructor(private userService: UserService) {

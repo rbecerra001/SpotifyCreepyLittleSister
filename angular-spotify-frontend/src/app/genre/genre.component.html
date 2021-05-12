@@ -1,10 +1,6 @@
 <div *ngIf="genre">
   <h4>{{genre.name}}</h4>
   <p>{{genre.description}}</p>
-  <form (submit)="createSong()">
-    <input [(ngModel)]="songName" name="songName" type="text" placeholder="new song" />
-    <input type="submit"/>
-  </form>
   <ul>
     <li *ngFor="let genre of genre.songList">
       {{song.name}}

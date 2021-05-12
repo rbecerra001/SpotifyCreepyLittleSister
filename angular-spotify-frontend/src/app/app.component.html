@@ -2,15 +2,18 @@
   <div class="nav-wrapper">
     <a class="brand-logo" routerLink="/login">Spotify's Creepy Little Sister</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a routerLink="/genres">All Genres</a></li>
+      <li><a routerLink="/artists">Artists</a></li>
+      <li><a routerLink="/genres">Genres</a></li>
+      <li><a routerLink="/labels">Labels</a></li>
+      <li><a routerLink="/songs">Songs</a></li>
 
       <span *ngIf="!this.currentUser">
         <li><a routerLink="/signup">Sign Up</a></li>
-        <li><a routerLink="/login">Log In</a></li>
+        <li><a routerLink="/login">Login</a></li>
       </span>
       <span *ngIf="this.currentUser">
-        <li><a routerLink="/logout">LOG OUT</a></li>
-        <li>Hello,</li>
+        <li><a routerLink="/logout">Log out</a></li>
+        <li>Hello, {{this.currentUser}}</li>
       </span>
     </ul>
   </div>

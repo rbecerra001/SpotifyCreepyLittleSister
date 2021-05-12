@@ -10,6 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { GenresComponent } from './genres/genres.component';
 import { LogoutComponent } from './logout/logout.component';
 import { GenreComponent } from './genre/genre.component';
+import { SongComponent } from './song/song.component';
+import { SongsComponent } from './songs/songs.component';
+import { ArtistComponent } from './artist/artist.component';
+import { ArtistsComponent } from './artists/artists.component';
+import { LabelComponent } from './label/label.component';
+import { LabelsComponent } from './labels/labels.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,13 @@ import { GenreComponent } from './genre/genre.component';
     LoginComponent,
     GenresComponent,
     LogoutComponent,
-    GenreComponent
+    GenreComponent,
+    SongComponent,
+    SongsComponent,
+    ArtistComponent,
+    ArtistsComponent,
+    LabelComponent,
+    LabelsComponent
   ],
   imports: [
     BrowserModule,

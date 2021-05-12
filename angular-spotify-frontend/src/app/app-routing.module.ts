@@ -5,6 +5,9 @@ import { GenresComponent } from './genres/genres.component';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent} from './logout/logout.component';
 import { GenreComponent } from "./genre/genre.component";
+import { ArtistComponent } from "./artist/artist.component";
+import { SongComponent } from "./song/song.component";
+import { LabelComponent } from "./label/label.component";
 
 const routes: Routes = [
   {
@@ -22,6 +25,18 @@ const routes: Routes = [
   {
     path: 'genres/:id',
     component: GenreComponent
+  },
+  {
+    path: 'songs',
+    component: SongComponent
+  },
+  {
+    path: 'artists',
+    component: ArtistComponent
+  },
+  {
+    path: 'labels',
+    component: LabelComponent
   },
   {
     path: 'login',
